@@ -53,3 +53,18 @@ fun CalcRow(){
 fun CalcDisplay(){
 
 }
+
+@Composable
+fun CalcNumericButton(){
+
+}
+
+@Composable
+fun CalcOperationButton(){
+
+}
+
+@Composable
+fun CalcEqualsButton(){
+
+}
