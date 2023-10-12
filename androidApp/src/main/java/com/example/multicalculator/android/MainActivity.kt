@@ -38,3 +38,8 @@ fun DefaultPreview() {
         GreetingView("Hello, Android!")
     }
 }
+
+@Composable
+fun CalcView(){
+
+}
