@@ -43,3 +43,13 @@ fun DefaultPreview() {
 fun CalcView(){
 
 }
+
+@Composable
+fun CalcRow(){
+
+}
+
+@Composable
+fun CalcDisplay(){
+
+}
