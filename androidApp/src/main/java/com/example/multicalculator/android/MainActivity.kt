@@ -58,8 +58,15 @@ fun CalcDisplay(){
 }
 
 @Composable
-fun CalcNumericButton(){
-
+fun CalcNumericButton(number: Int, display: MutableState<String>){
+    Button(
+        onClick = {
+            display.value += number.toString()
+    },
+        modifier = Modifier.padding(4.dp)
+    ) {
+        Text(text = number.toString())
+    }
 }
 
 @Composable
