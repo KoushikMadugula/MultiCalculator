@@ -57,7 +57,15 @@ fun CalcView(){
     Column (modifier = Modifier.background(Color.LightGray)) {
         CalcDisplay(display = displayText)
         Row {
+        Column {
 
+        }
+        Column {
+            CalcOperationButton(operation = "+", display = displayText)
+            CalcOperationButton(operation = "-", display = displayText)
+            CalcOperationButton(operation = "*", display = displayText)
+            CalcOperationButton(operation = "/", display = displayText)
+        }
         }
 
     }
