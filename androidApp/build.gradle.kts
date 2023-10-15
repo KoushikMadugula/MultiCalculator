@@ -39,10 +39,11 @@ android {
 }
 
 dependencies {
-    implementation(projects.shared)
-    implementation(libs.compose.ui)
-    implementation(libs.compose.ui.tooling.preview)
+    implementation("androidx.compose.ui:ui:1.4.3")
+    implementation("androidx.compose.ui:ui-tooling:1.4.3")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.4.3")
+    implementation("androidx.compose.foundation:foundation:1.4.3")
+    implementation("androidx.compose.material:material:1.4.3")
+    implementation("androidx.activity:activity-compose:1.7.1")
     implementation(libs.compose.material3)
-    implementation(libs.androidx.activity.compose)
-    debugImplementation(libs.compose.ui.tooling)
 }

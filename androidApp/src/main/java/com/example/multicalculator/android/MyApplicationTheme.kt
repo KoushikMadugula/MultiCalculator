@@ -2,11 +2,11 @@ package com.example.multicalculator.android
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Shapes
-import androidx.compose.material3.Typography
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Shapes
+import androidx.compose.material.Typography
+import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -21,20 +21,20 @@ fun MyApplicationTheme(
     content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) {
-        darkColorScheme(
+        darkColors(
             primary = Color(0xFFBB86FC),
+            primaryVariant = Color(0xFF3700B3),
             secondary = Color(0xFF03DAC5),
-            tertiary = Color(0xFF3700B3)
         )
     } else {
-        lightColorScheme(
+        lightColors(
             primary = Color(0xFF6200EE),
+            primaryVariant = Color(0xFF3700B3),
             secondary = Color(0xFF03DAC5),
-            tertiary = Color(0xFF3700B3)
         )
     }
     val typography = Typography(
-        bodyMedium = TextStyle(
+        body1 = TextStyle(
             fontFamily = FontFamily.Default,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp
@@ -47,7 +47,7 @@ fun MyApplicationTheme(
     )
 
     MaterialTheme(
-        colorScheme = colors,
+        colors = colors,
         typography = typography,
         shapes = shapes,
         content = content
