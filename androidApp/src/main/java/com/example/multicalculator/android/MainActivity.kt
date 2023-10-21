@@ -15,10 +15,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -97,22 +95,27 @@ fun CalcView(){
 
     Column (modifier = Modifier.background(Color.LightGray)
         ) {
-        CalcDisplay(display = displayText)
+        CalcDisplay(onPress = displayText)
         Row {
             Column {
                 for (i in 7 downTo 1 step 3) {
-                    CalcRow(display = displayText, startNum = i, numButtons = 3)
+                    CalcRow(onPress = { number -> numberPress(number)}, i,3)
                 }
                 Row {
-                    CalcNumericButton(number = 0, display = displayText)
-                    CalcEqualsButton(display = displayText)
+                    val equalsPress: () -> Unit = {
+                        equalsPress()
+                    }
+                    CalcNumericButton(number = 0) {
+                        number -> numberPress(number)
+                    }
+                    CalcEqualsButton { equalsPress() }
                 }
             }
             Column {
-                CalcOperationButton(operation = "+", display = displayText)
-                CalcOperationButton(operation = "-", display = displayText)
-                CalcOperationButton(operation = "*", display = displayText)
-                CalcOperationButton(operation = "/", display = displayText)
+                CalcOperationButton(operation = "+", onPress = { op -> operationPress(op)})
+                CalcOperationButton(operation = "-", onPress = { op -> operationPress(op)})
+                CalcOperationButton(operation = "*", onPress = { op -> operationPress(op)})
+                CalcOperationButton(operation = "/", onPress = { op -> operationPress(op)})
             }
         }
     }
@@ -120,20 +123,20 @@ fun CalcView(){
 }
 
 @Composable
-fun CalcRow(display: MutableState<String>, startNum: Int, numButtons: Int){
+fun CalcRow(onPress: (number:Int) -> Unit, startNum: Int, numButtons: Int){
     val endNum = startNum + numButtons
     Row(modifier = Modifier.padding(0.dp)) {
         for (i in startNum until endNum){
-            CalcNumericButton(number = i, display = display)
+            CalcNumericButton(number = i, onPress = onPress)
         }
     }
 
 }
 
 @Composable
-fun CalcDisplay(display: MutableState<String>){
+fun CalcDisplay(onPress: String){
     Text(
-        text = display.value,
+        text = onPress,
         modifier = Modifier
             .height(50.dp)
             .fillMaxWidth()
@@ -143,10 +146,10 @@ fun CalcDisplay(display: MutableState<String>){
 }
 
 @Composable
-fun CalcNumericButton(number: Int, display: MutableState<String>){
+fun CalcNumericButton(number: Int, onPress: (number:Int) -> Unit){
     Button(
         onClick = {
-            display.value += number.toString()
+            onPress(number)
     },
         modifier = Modifier.padding(4.dp)
     ) {
@@ -155,10 +158,10 @@ fun CalcNumericButton(number: Int, display: MutableState<String>){
 }
 
 @Composable
-fun CalcOperationButton(operation: String, display: MutableState<String>){
+fun CalcOperationButton(operation: String, onPress: (String) -> Unit){
     Button(
         onClick = {
-        //empty onClick
+        onPress(operation)
     },
         modifier = Modifier.padding(4.dp)
     ) {
@@ -167,10 +170,10 @@ fun CalcOperationButton(operation: String, display: MutableState<String>){
 }
 
 @Composable
-fun CalcEqualsButton(display: MutableState<String>){
+fun CalcEqualsButton(onPress: () -> Unit){
     Button(
         onClick = {
-            display.value = "0"
+            onPress()
     },
         modifier = Modifier.padding(4.dp)
     ) {
